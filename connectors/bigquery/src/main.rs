@@ -41,6 +41,10 @@ impl Describe for BigQueryConnector {
                     .to_vec(),
                 id_type: "INT64".into(),
                 import_types: ["INT64".into(), "FLOAT64".into(), "BOOL".into(), "STRING".into()],
+                create_table_suffix: None,
+                preview_sql: None,
+                rename_table_sql: None,
+                rename_column_sql: None,
             },
         }
     }

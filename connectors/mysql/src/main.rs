@@ -39,6 +39,10 @@ impl Describe for MySql {
                 .to_vec(),
                 id_type: "INT AUTO_INCREMENT".into(),
                 import_types: ["BIGINT".into(), "DOUBLE".into(), "BOOLEAN".into(), "TEXT".into()],
+                create_table_suffix: None,
+                preview_sql: None,
+                rename_table_sql: None,
+                rename_column_sql: None,
             },
         }
     }

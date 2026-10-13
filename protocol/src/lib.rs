@@ -126,6 +126,21 @@ pub struct Dialect {
     pub id_type: String,
     /// Types déduits à l'import : entier, flottant, booléen, texte.
     pub import_types: [String; 4],
+    /// Ajouté après la parenthèse fermante d'un `CREATE TABLE`
+    /// (ClickHouse : `ENGINE = MergeTree ORDER BY tuple()`).
+    #[serde(default)]
+    pub create_table_suffix: Option<String>,
+    /// Aperçu des `{n}` premières lignes de `{table}` quand `LIMIT` n'existe
+    /// pas (SQL Server : `SELECT TOP {n} * FROM {table}`).
+    #[serde(default)]
+    pub preview_sql: Option<String>,
+    /// Renommage d'une table quand `ALTER TABLE … RENAME TO` n'existe pas
+    /// (`{table}` qualifié et protégé, `{to}` brut).
+    #[serde(default)]
+    pub rename_table_sql: Option<String>,
+    /// Renommage d'une colonne (`{table}`, `{from}`, `{to}` bruts).
+    #[serde(default)]
+    pub rename_column_sql: Option<String>,
 }
 
 /// Réponse à `hello`.

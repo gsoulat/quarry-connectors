@@ -1,0 +1,19 @@
+[package]
+name = "quarry-connector-clickhouse"
+description = "Connecteur ClickHouse pour Quarry (interface HTTP)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[[bin]]
+name = "quarry-connector-clickhouse"
+path = "src/main.rs"
+
+[dependencies]
+quarry-connector-sdk = { workspace = true }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio.workspace = true
+async-trait = { workspace = true }

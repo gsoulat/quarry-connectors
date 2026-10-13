@@ -1,0 +1,17 @@
+[package]
+name = "quarry-connector-duckdb"
+description = "Connecteur DuckDB pour Quarry (base embarquée, fichier .duckdb)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[[bin]]
+name = "quarry-connector-duckdb"
+path = "src/main.rs"
+
+[dependencies]
+quarry-connector-sdk = { workspace = true }
+duckdb = { version = "1.10506", features = ["bundled"] }
+tokio = { workspace = true }
+async-trait = { workspace = true }

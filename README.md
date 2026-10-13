@@ -8,7 +8,11 @@ sdk/                   boucle de service pour écrire un connecteur (crate quarr
 connectors/
 ├── postgres/          PostgreSQL
 ├── mysql/             MySQL / MariaDB
-└── bigquery/          Google BigQuery
+├── bigquery/          Google BigQuery
+├── duckdb/            DuckDB (embarqué)
+├── clickhouse/        ClickHouse (HTTP)
+├── mssql/             SQL Server / Azure SQL (TDS)
+└── snowflake/         Snowflake (SQL REST API, clé RSA)
 engines.json           catalogue des moteurs affichés par Quarry (alias compris : MariaDB → mysql, CockroachDB → postgres…)
 scripts/make_registry.py   produit registry.json à la publication
 ```
