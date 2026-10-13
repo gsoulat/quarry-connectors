@@ -1,0 +1,121 @@
+# Semantic release à chaque push sur main. semantic-release lit les commits
+# depuis le dernier tag (Conventional Commits : `feat:` → version mineure,
+# `fix:`, `perf:`, `refactor:` → correctif), met à jour la version du
+# workspace dans Cargo.toml et Cargo.lock, CHANGELOG.md, commit, tague
+# `v<version>` et crée la Release. Les jobs suivants compilent chaque
+# connecteur depuis ce tag pour macOS (Apple Silicon et Intel), Linux et
+# Windows, calculent les empreintes SHA-256 et attachent les binaires et
+# `registry.json` à la Release. Quarry lit
+# `releases/latest/download/registry.json` pour savoir quoi télécharger.
+# Le titre de la pull request devient le message du squash merge : c'est
+# lui qui doit porter le type.
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: always
+  CONNECTORS: postgres mysql bigquery duckdb clickhouse mssql snowflake
+
+jobs:
+  release:
+    name: Version, tag et Release
+    runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.semantic.outputs.new_release_published }}
+      version: ${{ steps.semantic.outputs.new_release_version }}
+      tag: ${{ steps.semantic.outputs.new_release_git_tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+      - name: semantic-release
+        id: semantic
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 24
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/exec
+            @semantic-release/git
+            conventional-changelog-conventionalcommits
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    name: ${{ matrix.target }}
+    needs: release
+    if: needs.release.outputs.published == 'true'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: macos-14, target: aarch64-apple-darwin, ext: "" }
+          - { os: macos-14, target: x86_64-apple-darwin, ext: "" }
+          - { os: ubuntu-22.04, target: x86_64-unknown-linux-gnu, ext: "" }
+          - { os: windows-latest, target: x86_64-pc-windows-msvc, ext: ".exe" }
+    steps:
+      # Le tag pointe sur le commit de release (Cargo.toml déjà à jour).
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.release.outputs.tag }}
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+      - name: Compilation
+        run: cargo build --release --locked --target ${{ matrix.target }}
+      - name: Collecte des binaires
+        shell: bash
+        run: |
+          mkdir -p dist
+          for c in $CONNECTORS; do
+            cp "target/${{ matrix.target }}/release/quarry-connector-$c${{ matrix.ext }}" \
+               "dist/quarry-connector-$c-${{ matrix.target }}${{ matrix.ext }}"
+          done
+          ls -la dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bin-${{ matrix.target }}
+          path: dist/*
+
+  publish:
+    name: Registre et binaires
+    needs: [release, build]
+    if: needs.release.outputs.published == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.release.outputs.tag }}
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: registry.json
+        shell: bash
+        run: |
+          python3 scripts/make_registry.py "${{ needs.release.outputs.tag }}" "${{ github.repository }}" dist > dist/registry.json
+          cat dist/registry.json
+      - name: Attacher à la Release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${{ needs.release.outputs.tag }}" dist/* --repo "$GITHUB_REPOSITORY" --clobber
+          gh release edit "${{ needs.release.outputs.tag }}" --repo "$GITHUB_REPOSITORY" --latest

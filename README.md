@@ -52,3 +52,7 @@ git tag v0.1.0 && git push --tags
 ```
 
 Le workflow compile chaque connecteur pour macOS (Apple Silicon et Intel), Linux et Windows, et publie les binaires avec un `registry.json` (URL, taille, SHA-256 par cible). Quarry lit `https://github.com/gsoulat/quarry-connectors/releases/latest/download/registry.json`.
+
+## Publier une version
+
+Les releases sont automatiques (semantic-release). Chaque changement passe par une pull request ; son titre devient le message du squash merge et doit suivre [Conventional Commits](https://www.conventionalcommits.org/fr/) : `feat:` → version mineure, `fix:`/`perf:`/`refactor:` → correctif, `ci:`/`docs:`/`chore:` → rien n'est publié. La CI met à jour la version du workspace dans `Cargo.toml`, `Cargo.lock` et `CHANGELOG.md`, pose le tag `v<version>`, compile les connecteurs pour les quatre cibles et attache binaires et `registry.json` à la Release. Ne pas poser de tag ni modifier la version à la main.
