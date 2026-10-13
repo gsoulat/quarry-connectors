@@ -2074,7 +2074,7 @@ dependencies = [
 
 [[package]]
 name = "quarry-connector-bigquery"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "async-trait",
  "gcp-bigquery-client",
@@ -2085,7 +2085,7 @@ dependencies = [
 
 [[package]]
 name = "quarry-connector-clickhouse"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "async-trait",
  "quarry-connector-sdk",
@@ -2097,7 +2097,7 @@ dependencies = [
 
 [[package]]
 name = "quarry-connector-duckdb"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "async-trait",
  "duckdb",
@@ -2107,7 +2107,7 @@ dependencies = [
 
 [[package]]
 name = "quarry-connector-mssql"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "async-trait",
  "futures-util",
@@ -2119,7 +2119,7 @@ dependencies = [
 
 [[package]]
 name = "quarry-connector-mysql"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "async-trait",
  "futures-util",
@@ -2130,7 +2130,7 @@ dependencies = [
 
 [[package]]
 name = "quarry-connector-postgres"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "async-trait",
  "futures-util",
@@ -2142,7 +2142,7 @@ dependencies = [
 
 [[package]]
 name = "quarry-connector-sdk"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "async-trait",
  "quarry-protocol",
@@ -2152,7 +2152,7 @@ dependencies = [
 
 [[package]]
 name = "quarry-connector-snowflake"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "async-trait",
  "base64 0.22.1",
@@ -2168,7 +2168,7 @@ dependencies = [
 
 [[package]]
 name = "quarry-protocol"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "serde",
  "serde_json",
