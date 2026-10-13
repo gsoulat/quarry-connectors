@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["protocol", "sdk", "connectors/postgres", "connectors/mysql", "connectors/bigquery"]
+members = ["protocol", "sdk", "connectors/postgres", "connectors/mysql", "connectors/bigquery", "connectors/duckdb", "connectors/clickhouse", "connectors/mssql"]
 
 [workspace.package]
 version = "0.1.0"

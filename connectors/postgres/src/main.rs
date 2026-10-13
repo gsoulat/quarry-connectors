@@ -40,6 +40,10 @@ impl Describe for Postgres {
                 .to_vec(),
                 id_type: "SERIAL".into(),
                 import_types: ["BIGINT".into(), "DOUBLE PRECISION".into(), "BOOLEAN".into(), "TEXT".into()],
+                create_table_suffix: None,
+                preview_sql: None,
+                rename_table_sql: None,
+                rename_column_sql: None,
             },
         }
     }

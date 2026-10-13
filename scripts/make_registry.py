@@ -18,6 +18,9 @@ DESCRIPTIONS = {
     "postgres": ("PostgreSQL", "PostgreSQL 10 et plus, plan et coût via EXPLAIN."),
     "mysql": ("MySQL", "MySQL 8 et MariaDB ; le plan nécessite MySQL 8.0.18 ou plus."),
     "bigquery": ("BigQuery", "Google BigQuery en SQL standard, coût estimé par dry run."),
+    "duckdb": ("DuckDB", "Base analytique embarquée (fichier .duckdb)."),
+    "clickhouse": ("ClickHouse", "ClickHouse par son interface HTTP."),
+    "mssql": ("SQL Server", "Microsoft SQL Server et Azure SQL (TDS)."),
 }
 
 NAME = re.compile(r"^quarry-connector-(?P<id>[a-z0-9]+)-(?P<target>[a-z0-9_]+-[a-z0-9_-]+?)(?P<ext>\.exe)?$")

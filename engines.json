@@ -10,6 +10,10 @@
     { "id": "redshift", "name": "Amazon Redshift", "connector": "postgres", "form": "server", "default_port": 5439, "description": "Via le connecteur PostgreSQL ; EXPLAIN JSON non disponible." },
     { "id": "timescaledb", "name": "TimescaleDB", "connector": "postgres", "form": "server", "default_port": 5432, "description": "Extension PostgreSQL : connecteur PostgreSQL." },
     { "id": "supabase", "name": "Supabase", "connector": "postgres", "form": "server", "default_port": 5432, "description": "Base PostgreSQL hébergée : connecteur PostgreSQL." },
-    { "id": "neon", "name": "Neon", "connector": "postgres", "form": "server", "default_port": 5432, "description": "PostgreSQL serverless : connecteur PostgreSQL." }
+    { "id": "neon", "name": "Neon", "connector": "postgres", "form": "server", "default_port": 5432, "description": "PostgreSQL serverless : connecteur PostgreSQL." },
+    { "id": "duckdb", "name": "DuckDB", "connector": "duckdb", "form": "file", "description": "Base analytique embarquée : fichier .duckdb ou :memory:." },
+    { "id": "clickhouse", "name": "ClickHouse", "connector": "clickhouse", "form": "server", "default_port": 8123, "description": "Interface HTTP (port 8123) ; pas de clés étrangères." },
+    { "id": "mssql", "name": "SQL Server", "connector": "mssql", "form": "server", "default_port": 1433, "description": "Microsoft SQL Server 2012 et plus (TDS, TLS)." },
+    { "id": "azuresql", "name": "Azure SQL", "connector": "mssql", "form": "server", "default_port": 1433, "description": "Via le connecteur SQL Server ; hôte <serveur>.database.windows.net." }
   ]
 }
