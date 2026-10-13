@@ -1,0 +1,15 @@
+{
+  "_comment": "Catalogue des moteurs affichés par Quarry. `connector` est le binaire qui les sert ; plusieurs moteurs peuvent partager un connecteur (protocole compatible). `form` : server (hôte/port/utilisateur/mot de passe/base), file (chemin), cloud (projet + clé), builtin (intégré à Quarry).",
+  "engines": [
+    { "id": "sqlite", "name": "SQLite", "connector": null, "form": "file", "description": "Intégré à Quarry, aucun téléchargement." },
+    { "id": "postgres", "name": "PostgreSQL", "connector": "postgres", "form": "server", "default_port": 5432, "description": "PostgreSQL 10 et plus." },
+    { "id": "mysql", "name": "MySQL", "connector": "mysql", "form": "server", "default_port": 3306, "description": "MySQL 8 ; le plan nécessite 8.0.18 ou plus." },
+    { "id": "mariadb", "name": "MariaDB", "connector": "mysql", "form": "server", "default_port": 3306, "description": "Via le connecteur MySQL (protocole compatible)." },
+    { "id": "bigquery", "name": "Google BigQuery", "connector": "bigquery", "form": "cloud", "description": "SQL standard, coût estimé par dry run." },
+    { "id": "cockroachdb", "name": "CockroachDB", "connector": "postgres", "form": "server", "default_port": 26257, "description": "Via le connecteur PostgreSQL (protocole compatible)." },
+    { "id": "redshift", "name": "Amazon Redshift", "connector": "postgres", "form": "server", "default_port": 5439, "description": "Via le connecteur PostgreSQL ; EXPLAIN JSON non disponible." },
+    { "id": "timescaledb", "name": "TimescaleDB", "connector": "postgres", "form": "server", "default_port": 5432, "description": "Extension PostgreSQL : connecteur PostgreSQL." },
+    { "id": "supabase", "name": "Supabase", "connector": "postgres", "form": "server", "default_port": 5432, "description": "Base PostgreSQL hébergée : connecteur PostgreSQL." },
+    { "id": "neon", "name": "Neon", "connector": "postgres", "form": "server", "default_port": 5432, "description": "PostgreSQL serverless : connecteur PostgreSQL." }
+  ]
+}

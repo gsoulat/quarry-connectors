@@ -9,6 +9,7 @@ connectors/
 ├── postgres/          PostgreSQL
 ├── mysql/             MySQL / MariaDB
 └── bigquery/          Google BigQuery
+engines.json           catalogue des moteurs affichés par Quarry (alias compris : MariaDB → mysql, CockroachDB → postgres…)
 scripts/make_registry.py   produit registry.json à la publication
 ```
 

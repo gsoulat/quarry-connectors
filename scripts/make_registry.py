@@ -43,7 +43,14 @@ def main(tag: str, repo: str, folder: str) -> None:
             "sha256": digest,
             "size": os.path.getsize(path),
         }
-    print(json.dumps({"protocol": 1, "tag": tag, "connectors": list(connectors.values())}, indent=2))
+    # Catalogue des moteurs (alias compris), maintenu dans engines.json.
+    here = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(here, "..", "engines.json"), encoding="utf-8") as f:
+        engines = json.load(f)["engines"]
+    print(json.dumps(
+        {"protocol": 1, "tag": tag, "connectors": list(connectors.values()), "engines": engines},
+        indent=2, ensure_ascii=False,
+    ))
 
 
 if __name__ == "__main__":
