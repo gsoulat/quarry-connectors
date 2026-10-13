@@ -163,6 +163,16 @@ pub struct ConnectParams {
     /// Nombre maximal de lignes renvoyées par `query`.
     #[serde(default = "default_max_rows")]
     pub max_rows: usize,
+    /// Champs propres au moteur, déclarés par le catalogue (entrepôt
+    /// Snowflake, rôle, région AWS…), par clé.
+    #[serde(default)]
+    pub options: std::collections::HashMap<String, String>,
+}
+
+impl ConnectParams {
+    pub fn option(&self, key: &str) -> Option<&str> {
+        self.options.get(key).map(String::as_str).filter(|v| !v.trim().is_empty())
+    }
 }
 
 fn default_max_rows() -> usize {

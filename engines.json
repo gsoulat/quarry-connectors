@@ -1,5 +1,5 @@
 {
-  "_comment": "Catalogue des moteurs affichés par Quarry. `connector` est le binaire qui les sert ; plusieurs moteurs peuvent partager un connecteur (protocole compatible). `form` : server (hôte/port/utilisateur/mot de passe/base), file (chemin), cloud (projet + clé), builtin (intégré à Quarry).",
+  "_comment": "Catalogue des moteurs affichés par Quarry. `connector` est le binaire qui les sert ; plusieurs moteurs peuvent partager un connecteur (protocole compatible). `form` : server (hôte/port/utilisateur/mot de passe/base), file (chemin), cloud (projet + clé), custom (uniquement les `fields` déclarés). `fields` : champs supplémentaires {key, label, placeholder, secret, required} transmis au connecteur dans ConnectParams.options ; un champ `secret` est rangé dans le trousseau.",
   "engines": [
     { "id": "sqlite", "name": "SQLite", "connector": null, "form": "file", "description": "Intégré à Quarry, aucun téléchargement." },
     { "id": "postgres", "name": "PostgreSQL", "connector": "postgres", "form": "server", "default_port": 5432, "description": "PostgreSQL 10 et plus." },
