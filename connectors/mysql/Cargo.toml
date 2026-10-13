@@ -1,0 +1,18 @@
+[package]
+name = "quarry-connector-mysql"
+description = "Connecteur MySQL / MariaDB pour Quarry"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[[bin]]
+name = "quarry-connector-mysql"
+path = "src/main.rs"
+
+[dependencies]
+quarry-connector-sdk = { workspace = true }
+sqlx = { workspace = true, features = ["mysql"] }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+futures-util = { workspace = true }

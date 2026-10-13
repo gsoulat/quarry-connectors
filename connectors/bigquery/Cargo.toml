@@ -1,0 +1,18 @@
+[package]
+name = "quarry-connector-bigquery"
+description = "Connecteur Google BigQuery pour Quarry"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[[bin]]
+name = "quarry-connector-bigquery"
+path = "src/main.rs"
+
+[dependencies]
+quarry-connector-sdk = { workspace = true }
+gcp-bigquery-client = "0.28"
+tokio = { workspace = true }
+async-trait = { workspace = true }
+serde_json = { workspace = true }

@@ -1,0 +1,19 @@
+[package]
+name = "quarry-connector-postgres"
+description = "Connecteur PostgreSQL pour Quarry"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[[bin]]
+name = "quarry-connector-postgres"
+path = "src/main.rs"
+
+[dependencies]
+quarry-connector-sdk = { workspace = true }
+sqlx = { workspace = true, features = ["postgres"] }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+futures-util = { workspace = true }
+serde_json = { workspace = true }
