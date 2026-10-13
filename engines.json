@@ -14,6 +14,16 @@
     { "id": "duckdb", "name": "DuckDB", "connector": "duckdb", "form": "file", "description": "Base analytique embarquée : fichier .duckdb ou :memory:." },
     { "id": "clickhouse", "name": "ClickHouse", "connector": "clickhouse", "form": "server", "default_port": 8123, "description": "Interface HTTP (port 8123) ; pas de clés étrangères." },
     { "id": "mssql", "name": "SQL Server", "connector": "mssql", "form": "server", "default_port": 1433, "description": "Microsoft SQL Server 2012 et plus (TDS, TLS)." },
-    { "id": "azuresql", "name": "Azure SQL", "connector": "mssql", "form": "server", "default_port": 1433, "description": "Via le connecteur SQL Server ; hôte <serveur>.database.windows.net." }
+    { "id": "azuresql", "name": "Azure SQL", "connector": "mssql", "form": "server", "default_port": 1433, "description": "Via le connecteur SQL Server ; hôte <serveur>.database.windows.net." },
+    { "id": "snowflake", "name": "Snowflake", "connector": "snowflake", "form": "custom", "description": "SQL REST API, authentification par paire de clés RSA (pas de mot de passe).",
+      "fields": [
+        { "key": "account", "label": "Identifiant de compte", "placeholder": "xy12345.eu-west-1 ou org-compte", "required": true },
+        { "key": "user", "label": "Utilisateur", "placeholder": "MON_USER", "required": true },
+        { "key": "private_key_path", "label": "Clé privée RSA (fichier PEM PKCS#8)", "placeholder": "/chemin/vers/rsa_key.p8", "required": true },
+        { "key": "warehouse", "label": "Entrepôt (warehouse)", "placeholder": "COMPUTE_WH" },
+        { "key": "role", "label": "Rôle", "placeholder": "optionnel" },
+        { "key": "database", "label": "Base", "placeholder": "optionnel" },
+        { "key": "schema", "label": "Schéma", "placeholder": "PUBLIC" }
+      ] }
   ]
 }

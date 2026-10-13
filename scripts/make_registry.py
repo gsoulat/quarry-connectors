@@ -21,6 +21,7 @@ DESCRIPTIONS = {
     "duckdb": ("DuckDB", "Base analytique embarquée (fichier .duckdb)."),
     "clickhouse": ("ClickHouse", "ClickHouse par son interface HTTP."),
     "mssql": ("SQL Server", "Microsoft SQL Server et Azure SQL (TDS)."),
+    "snowflake": ("Snowflake", "Snowflake par la SQL REST API (clé RSA)."),
 }
 
 NAME = re.compile(r"^quarry-connector-(?P<id>[a-z0-9]+)-(?P<target>[a-z0-9_]+-[a-z0-9_-]+?)(?P<ext>\.exe)?$")

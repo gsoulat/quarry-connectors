@@ -11,7 +11,8 @@ connectors/
 ├── bigquery/          Google BigQuery
 ├── duckdb/            DuckDB (embarqué)
 ├── clickhouse/        ClickHouse (HTTP)
-└── mssql/             SQL Server / Azure SQL (TDS)
+├── mssql/             SQL Server / Azure SQL (TDS)
+└── snowflake/         Snowflake (SQL REST API, clé RSA)
 engines.json           catalogue des moteurs affichés par Quarry (alias compris : MariaDB → mysql, CockroachDB → postgres…)
 scripts/make_registry.py   produit registry.json à la publication
 ```
